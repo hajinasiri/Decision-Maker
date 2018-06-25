@@ -4,10 +4,11 @@ $(document).ready(function(){
 
       $('#add').click(function(){
         let user_input = $(this).parent().siblings().children('#input').val();
-        user_input = String(user_input);
+
         if (user_input !== ''){
           i++;
-          $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" value='+user_input+' name="name[]" class="form-control name_list" required /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+          let html = '<tr id="row'+i+'" class="dynamic-added"><td><input type="text" value='+'"'+user_input+'"'+' name="name[]" class="form-control name_list" required /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>';
+          $('#dynamic_field').append(html);
           $(this).parent().siblings().children('#input').val('');
         }
 
