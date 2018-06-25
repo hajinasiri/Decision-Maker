@@ -1,9 +1,28 @@
 
 body {
-  margin:0px;
+  margin:0em;
 }
 
-h1 {
-  padding-left:1em;
+h2 {
+  padding:1em;
 
+}
+
+
+.email {
+  margin-bottom:1em;
+  border-radius:.3em;
+  height:2.5em;
+  width:30em;
+  border-color: #ccc;
+  padding:.4em;
+}
+
+.question {
+  margin-bottom:1em;
+  height:5em;
+  width:30em;
+  border-radius:.3em;
+  border-color:#ccc;
+  padding:.4em;
 }
