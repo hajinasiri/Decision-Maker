@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PHP - Dynamically Add or Remove input fields using JQuery</title>
+    <title>Pole creator</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
@@ -10,22 +12,22 @@
 
 
 <div class="container">
-    <h2 align="center">PHP - Dynamically Add or Remove input fields using JQuery</h2>
+    <h2 align="center">Create a pole here</h2>
     <div class="form-group">
-         <form name="add_name" id="add_name">
 
+         <form name="add_name" id="add_name">
+          <div><input type="text" name="email" placeholder="Enter your email" class="email" /></div>
+          <div><input type="text" name="event" placeholder="Enter the event's name" class="event" /></div>
 
             <div class="table-responsive">
                 <table class="table table-bordered" id="dynamic_field">
                     <tr>
-                        <td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" required="" /></td>
+                        <td><input type="text" name="name[]" placeholder="Enter your Name" id="input" class="form-control name_list" required="" /></td>
                         <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                     </tr>
                 </table>
                 <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />
             </div>
-
-
          </form>
     </div>
 </div>
@@ -36,10 +38,14 @@
       var postURL = "/addmore.php";
       var i=1;
 
-
       $('#add').click(function(){
-           i++;
-           $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" required /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+        let user_input = $(this).parent().siblings().children('#input').val();
+        if (user_input !== ''){
+          i++;
+          $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" value='+user_input+' name="name[]" class="form-control name_list" required /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+          $(this).parent().siblings().children('#input').val('');
+        }
+
       });
 
 
