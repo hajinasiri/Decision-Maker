@@ -29,7 +29,9 @@
   // print $_POST['option'][2];
   // echo sizeof($_POST['option']);
 
+var_dump($_GET[]);
 
+echo $code;
 
 
 
