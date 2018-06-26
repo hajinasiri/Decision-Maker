@@ -1,5 +1,5 @@
 $(document).ready(function(){
-      var postURL = "/addmore.php";
+      var postURL = "completed.php";
       var i=1;
 
       $('#add').click(function(){
