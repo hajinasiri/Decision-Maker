@@ -17,18 +17,18 @@
     <h2 align="center">Create a pole</h2>
     <div class="form-group">
 
-         <form name="add_name" id="add_name">
+         <form name="add_name" id="add_name" action="completed.php" method="post">
           <div><input class="email" id="emailForm" type="email" name="email" placeholder="Enter your email" class="email" /></div>
           <div>
             <textarea rows:"5" type="text" name="question" placeholder="Enter the pole's question" class="question"></textarea></div>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dynamic_field">
                     <tr>
-                        <td><input type="text" name="name[]" placeholder="Enter an option" id="input" class="form-control name_list" required="" /></td>
-                        <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+                      <td><input type="text" name="option[]" placeholder="Enter an option" class="form-control name_list"/></td>
+                      <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                     </tr>
                 </table>
-                <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />
+                <input type="submit" name="submit" id="submit" class="btn btn-info" value="Submit" />
             </div>
          </form>
     </div>
@@ -36,3 +36,5 @@
 
 </body>
 </html>
+
+<!-- required="" -->
