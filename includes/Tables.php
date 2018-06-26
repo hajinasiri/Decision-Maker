@@ -47,5 +47,24 @@
         ChromePhp::log("Error creating table: " . $db->error);
       }
     }
+
+    function insert_user($db,$email){
+      //To check if the user already exists
+      $id_query = "SELECT id FROM users
+        WHERE email="."'".$email."'";
+      $result = mysqli_query($db, $id_query);
+      $id = mysqli_fetch_array($result)['id'];
+      ChromePhp::log($id);
+      if($id === null){
+        $insert_user = "INSERT INTO users (email)
+          VALUES ('".$email."')";
+
+        if($db->query($insert_user) === TRUE){
+          ChromePhp::log( "user was inserted to users");
+        } else {
+          ChromePhp::log("Error inserting user: " . $db->error);
+        };
+      }
+    }
   }
 ?>

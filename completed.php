@@ -21,17 +21,23 @@
   $db = new mysqli('localhost', $user, $pass, $db_name) or die("unable to connect to database test");
 
   //creating tables
-  $tables = new Tables;
-  $tables->create_users($db);
-  $tables->create_poles($db);
-  $tables->create_choices($db);
+  Tables::create_users($db);
+  Tables::create_poles($db);
+  Tables::create_choices($db);
 
-  // print $_POST['option'][2];
-  // echo sizeof($_POST['option']);
 
-var_dump($_GET[]);
 
-echo $code;
+  $email = $_POST['email'];
+  Tables::insert_user($db,$email);
+  $question = $_POST['question'];
+  $options = $_POST['option'];
+  echo $options[1];
+
+  foreach($options as $option) {
+    echo $option;
+  }
+
+
 
 
 
