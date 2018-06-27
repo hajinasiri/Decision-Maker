@@ -38,7 +38,7 @@
     function create_choices($db) {
       $create_choices = "CREATE TABLE IF NOT EXISTS choices (
       id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-      pole_id INT(6),
+      pole_id INT(6) UNSIGNED,
       description VARCHAR(30) NOT NULL,
       rank INT(6),
       reg_date TIMESTAMP,
@@ -87,9 +87,9 @@
       return $last_id;
     }
 
-    function insert_choices($db,$poles_id,$choice){
-      $choices_query = 'INSERT INTO choices(poles_id,description,rank)
-        VALUES ("'.$poles_id.'","'.$choice.'",0)';
+    function insert_choices($db,$pole_id,$choice){
+      $choices_query = 'INSERT INTO choices(pole_id,description,rank)
+        VALUES ("'.$pole_id.'","'.$choice.'",0)';
       $result = mysqli_query($db,$choices_query);
       if($result === TRUE) {
         ChromePhp::log('choice inserted');
