@@ -22,6 +22,7 @@
       user_id INT(6) UNSIGNED,
       vote_link VARCHAR(30) NOT NULL,
       result_link VARCHAR(30) NOT NULL,
+      question VARCHAR(100) NOT NULL,
       reg_date TIMESTAMP,
       FOREIGN KEY (user_id) REFERENCES users(id)
       )";
@@ -54,7 +55,6 @@
         WHERE email="."'".$email."'";
       $result = mysqli_query($db, $id_query);
       $id = mysqli_fetch_array($result)['id'];
-      ChromePhp::log($id);
       if($id === null){
         $insert_user = "INSERT INTO users (email)
           VALUES ('".$email."')";
@@ -64,6 +64,21 @@
         } else {
           ChromePhp::log("Error inserting user: " . $db->error);
         };
+      }
+    }
+
+    function insert_pole($db,$email,$vote_link,$result_link,$question){
+      $id_query = "SELECT id FROM users
+        WHERE email="."'".$email."'";
+      $result = mysqli_query($db, $id_query);
+      $user_id = mysqli_fetch_array($result)['id'];
+      $pole_query = 'INSERT INTO poles(vote_link,result_link,user_id,question)
+        VALUES ("'.$vote_link.'","'.$result_link.'","'.$user_id.'","'.$question.'")';
+      $result = mysqli_query($db, $pole_query);
+      if($result === TRUE) {
+        ChromePhp::log('pole inserted');
+      }else{
+        ChromePhp::log("Error inserting the pole". $db->error);
       }
     }
   }

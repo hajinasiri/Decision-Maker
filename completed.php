@@ -5,7 +5,7 @@
    function create_url() {
     $characters = 'ABCDEFGHIJKLMNOPQRSTUVabcdefghijklmnopqrstuv1234567890';
     $url = '';
-    for ($x = 0; $x <= 6; $x++) {
+    for ($x = 0; $x < 6; $x++) {
       $randomChar = $characters[rand(0, strlen($characters)-1)];
       $url = $url.$randomChar;
     }
@@ -30,6 +30,10 @@
   $email = $_POST['email'];
   Tables::insert_user($db,$email);
   $question = $_POST['question'];
+  $vote_link = 'localhost:8080/dmaker/p/'.create_url();
+  $result_link = 'localhost:8080/dmaker/r/'.create_url();
+  echo $vote_link;
+  Tables::insert_pole($db,$email,$vote_link,$result_link,$question);
   $options = $_POST['option'];
   echo $options[1];
 
