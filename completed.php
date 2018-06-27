@@ -28,12 +28,12 @@
 
 
   $email = $_POST['email'];
-  Tables::insert_user($db,$email);
+  $user_id = Tables::insert_user($db,$email);
   $question = $_POST['question'];
   $vote_link = 'localhost:8080/dmaker/p/'.create_url();
   $result_link = 'localhost:8080/dmaker/r/'.create_url();
   echo $vote_link;
-  Tables::insert_pole($db,$email,$vote_link,$result_link,$question);
+  Tables::insert_pole($db,$user_id,$vote_link,$result_link,$question);
   $options = $_POST['option'];
   echo $options[1];
 

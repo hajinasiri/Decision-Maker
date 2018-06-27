@@ -56,30 +56,32 @@
       $result = mysqli_query($db, $id_query);
       $id = mysqli_fetch_array($result)['id'];
       if($id === null){
-        $insert_user = "INSERT INTO users (email)
+        $insert_query = "INSERT INTO users (email)
           VALUES ('".$email."')";
-
-        if($db->query($insert_user) === TRUE){
+        $result = mysqli_query($db,$insert_query);
+        $last_id = mysqli_insert_id($db);
+        if($result === TRUE){
           ChromePhp::log( "user was inserted to users");
         } else {
           ChromePhp::log("Error inserting user: " . $db->error);
         };
+      }else{
+        $last_id = $id;
       }
+      return $last_id;
     }
 
-    function insert_pole($db,$email,$vote_link,$result_link,$question){
-      $id_query = "SELECT id FROM users
-        WHERE email="."'".$email."'";
-      $result = mysqli_query($db, $id_query);
-      $user_id = mysqli_fetch_array($result)['id'];
+    function insert_pole($db,$user_id,$vote_link,$result_link,$question){
       $pole_query = 'INSERT INTO poles(vote_link,result_link,user_id,question)
         VALUES ("'.$vote_link.'","'.$result_link.'","'.$user_id.'","'.$question.'")';
-      $result = mysqli_query($db, $pole_query);
+      $result = mysqli_query($db,$pole_query);
+      $last_id = mysqli_insert_id($db);
       if($result === TRUE) {
         ChromePhp::log('pole inserted');
       }else{
         ChromePhp::log("Error inserting the pole". $db->error);
       }
+      return $last_id;
     }
   }
 ?>
