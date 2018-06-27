@@ -32,13 +32,12 @@
   $question = $_POST['question'];
   $vote_link = 'localhost:8080/dmaker/p/'.create_url();
   $result_link = 'localhost:8080/dmaker/r/'.create_url();
-  echo $vote_link;
-  Tables::insert_pole($db,$user_id,$vote_link,$result_link,$question);
+  $poles_id = Tables::insert_pole($db,$user_id,$vote_link,$result_link,$question);
   $options = $_POST['option'];
-  echo $options[1];
 
-  foreach($options as $option) {
-    echo $option;
+  for($i=1; $i<sizeof($options); $i++) {
+    $choice = $options[$i];
+    Tables::insert_choices($db,$poles_id,$choice);
   }
 
 

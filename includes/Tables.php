@@ -9,7 +9,8 @@
       id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
       email VARCHAR(30)
       )";
-      if ($db->query($create_users) === TRUE) {
+      $result = mysqli_query($db,$create_users);
+      if ($result === TRUE) {
         ChromePhp::log( "Table users was created successfully");
         } else {
         ChromePhp::log("Error creating table: " . $db->error);
@@ -26,7 +27,8 @@
       reg_date TIMESTAMP,
       FOREIGN KEY (user_id) REFERENCES users(id)
       )";
-      if ($db->query($create_poles) === TRUE) {
+      $result = mysqli_query($db,$create_poles);
+      if ($result === TRUE) {
         ChromePhp::log( "Table poles was created successfully");
         } else {
         ChromePhp::log("Error creating table: " . $db->error);
@@ -42,7 +44,8 @@
       reg_date TIMESTAMP,
       FOREIGN KEY (pole_id) REFERENCES poles(id)
       )";
-      if ($db->query($create_choices) === TRUE) {
+      $result = mysqli_query($db,$create_choices);
+      if ($result === TRUE) {
         ChromePhp::log( "Table choices was created successfully");
         } else {
         ChromePhp::log("Error creating table: " . $db->error);
@@ -82,6 +85,17 @@
         ChromePhp::log("Error inserting the pole". $db->error);
       }
       return $last_id;
+    }
+
+    function insert_choices($db,$poles_id,$choice){
+      $choices_query = 'INSERT INTO choices(poles_id,description,rank)
+        VALUES ("'.$poles_id.'","'.$choice.'",0)';
+      $result = mysqli_query($db,$choices_query);
+      if($result === TRUE) {
+        ChromePhp::log('choice inserted');
+      }else{
+        ChromePhp::log("Error inserting the choice". $db->error);
+      }
     }
   }
 ?>
