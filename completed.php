@@ -3,6 +3,22 @@
   include "./includes/Tables.php";
 
 
+
+  $str = file_get_contents("settings.json");
+  $json = json_decode($str, true);
+  echo ($json['password']);
+
+   function create_url() {
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVabcdefghijklmnopqrstuv1234567890';
+    $url = '';
+    for ($x = 0; $x < 6; $x++) {
+      $randomChar = $characters[rand(0, strlen($characters)-1)];
+      $url = $url.$randomChar;
+    }
+    return $url;
+  }
+
+
   //Setting parameters for connecting to the database
   $user = 'root';
   $pass = '';
@@ -30,6 +46,10 @@
     $choice = $options[$i];
     Tables::insert_choices($db,$pole_id,$choice);
   }
+
+
+
+
 
 
 
