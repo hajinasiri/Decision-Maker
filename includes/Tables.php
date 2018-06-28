@@ -126,5 +126,12 @@
       }
       return array($choices,$ranks,$id);
     }
+
+    function insert_choice($db,$id,$rank){
+      $choice_query = "UPDATE choices
+        SET rank = ".$rank."
+        WHERE id =".$id;
+      mysqli_query($db, $choice_query);
+    }
   }
 ?>

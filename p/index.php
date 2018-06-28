@@ -16,9 +16,9 @@ include '../includes/Tables.php';
 
   $choices_data = Tables::get_choices_by_pole_id($db,$pole_id);
   $choices = $choices_data[0];
-  $ranks = $choices_data[1];
-  $choice_ids = $choices_data[2];
-  var_dump($choice_ids);
+  $ranks = serialize($choices_data[1]);
+  $choice_ids = serialize($choices_data[2]);
+
   $db->close();
 ?>
 <!DOCTYPE html>
@@ -27,12 +27,13 @@ include '../includes/Tables.php';
   <div>Vote for each choice with a number between 1 and <?php echo (sizeof($choices)) ?></div>
   <form name="votes" method="post" action="../thanks.php">
     <input type="hidden" name="result_link" value="<?php echo $result_link?>" />
-    <input type="hidden" name="choice_ids" value="<?php echo $choice_ids?>" />
+    <input type="hidden" name="choice_ids" value="<?php echo htmlentities($choice_ids) ?>" />
+    <input type="hidden" name="ranks" value="<?php echo htmlentities($ranks) ?>" />
     <?php
     for($i=0; $i<sizeof($choices); $i++){
       echo "<div>
           <span>".$choices[$i]."</span>
-          <span><input type='text' name='option[]'' placeholder='Enter an option' class='form-control name_list'/>
+          <span><input type='text' name='vote[]'' placeholder='Enter an option' class='vote'/>
           </div>";
     }
     ?>
