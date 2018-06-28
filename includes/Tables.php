@@ -3,7 +3,7 @@
 
     function __construct() {
     }
-    // creating tables
+    // creating tables functions
 
     function create_users($db) { // this is the hello() function
       $create_users = "CREATE TABLE IF NOT EXISTS users(
@@ -53,7 +53,7 @@
       }
     }
 
-    //Inserting data
+    //Inserting data functions
 
     function insert_user($db,$email){
       //To check if the user already exists
@@ -102,10 +102,18 @@
     }
 
 
-    //fetching data
+    //Getting data functions
     function get_pole_by_vote_link($db,$vote_link) {
       $pole_query = "SELECT id, question, result_link FROM poles
         WHERE vote_link="."'".$vote_link."'";
+      $result = mysqli_query($db, $pole_query);
+      $info= mysqli_fetch_array($result);
+      return $info;
+    }
+
+    function get_pole_by_result_link($db,$result_link) {
+      $pole_query = "SELECT id, question FROM poles
+        WHERE result_link="."'".$result_link."'";
       $result = mysqli_query($db, $pole_query);
       $info= mysqli_fetch_array($result);
       return $info;
@@ -127,7 +135,8 @@
       return array($choices,$ranks,$id);
     }
 
-    function insert_choice($db,$id,$rank){
+    //Updating data function
+    function update_choice($db,$id,$rank){
       $choice_query = "UPDATE choices
         SET rank = ".$rank."
         WHERE id =".$id;

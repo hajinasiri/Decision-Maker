@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION['result_link'])){
   $result_link = $_SESSION['result_link'];
-    unset($_SESSION['result_link']); // clear the value so that it doesn't display again
+    unset($_SESSION['result_link']);
 }
 ?>
 

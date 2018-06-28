@@ -1,4 +1,5 @@
 <?php
+  session_start();
   include "./includes/ChromePhp.php";
   include "./includes/Tables.php";
 
@@ -36,20 +37,12 @@
     $choice = $options[$i];
     Tables::insert_choices($db,$pole_id,$choice);
   }
-
+  $_SESSION['vote_link'] = $vote_link ;
+  $_SESSION['result_link'] = $result_link;
+  ChromePhp::log($_SESSION['vote_link']);
+  header("Location: http://localhost:8080/dmaker/views/completed.php");
+  exit;
   $db->close();
 ?>
 
-<!DOCTYPE html>
-<html>
-<h2> Your pole is created</h2>
-<div>Here is the link which you can send the participant to vot</div>
-<a href= <?php
-        echo "http://localhost:8080/dmaker/p/".$vote_link;
-        ?>
-> Pole link</a>
-<div>and here is the link where you can see the result</div>
-<a href= <?php
-        echo "http://localhost:8080/dmaker/p/".$result_link;
-        ?>
-> Result link</a>
+
