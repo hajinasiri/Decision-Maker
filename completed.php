@@ -45,11 +45,11 @@
 <h2> Your pole is created</h2>
 <div>Here is the link which you can send the participant to vot</div>
 <a href= <?php
-        echo "localhost:8080/p/".$vote_link;
+        echo "http://localhost:8080/dmaker/p/".$vote_link;
         ?>
 > Pole link</a>
 <div>and here is the link where you can see the result</div>
 <a href= <?php
-        echo "localhost:8080/p/".$result_link;
+        echo "http://localhost:8080/dmaker/p/".$result_link;
         ?>
 > Result link</a>
