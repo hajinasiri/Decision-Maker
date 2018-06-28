@@ -3,6 +3,7 @@
 
     function __construct() {
     }
+    // creating tables
 
     function create_users($db) { // this is the hello() function
       $create_users = "CREATE TABLE IF NOT EXISTS users(
@@ -52,6 +53,8 @@
       }
     }
 
+    //Inserting data
+
     function insert_user($db,$email){
       //To check if the user already exists
       $id_query = "SELECT id FROM users
@@ -96,6 +99,32 @@
       }else{
         ChromePhp::log("Error inserting the choice". $db->error);
       }
+    }
+
+
+    //fetching data
+    function get_pole_by_vote_link($db,$vote_link) {
+      $pole_query = "SELECT id, question, result_link FROM poles
+        WHERE vote_link="."'".$vote_link."'";
+      $result = mysqli_query($db, $pole_query);
+      $info= mysqli_fetch_array($result);
+      return $info;
+    }
+
+    function get_choices_by_pole_id($db,$pole_id) {
+      $choice_query = "SELECT * FROM choices
+        WHERE pole_id="."'".$pole_id."'";
+      $result = mysqli_query($db, $choice_query);
+      // $info= mysqli_fetch_array($result);
+      $choices = array();
+      $id = array();
+      $ranks = array();
+      while ($row = mysqli_fetch_array($result)) {
+        $id[] = $row['id'];
+        $choices[] = $row['description'];
+        $ranks[] = $row['rank'];
+      }
+      return array($choices,$ranks,$id);
     }
   }
 ?>
