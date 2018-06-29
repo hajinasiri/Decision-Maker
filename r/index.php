@@ -13,5 +13,10 @@
   $question = $data['question'];
   $pole_id = $data['id'];
   $choices_data = Tables::get_choices_by_pole_id($db,$pole_id);
-
+  $_SESSION['choices_data'] = $choices_data ;
+  $_SESSION['question'] = $question ;
+  header("Location: http://localhost:8080/dmaker/views/result.php");
+  exit;
+  $db->close();
+?>
   ?>

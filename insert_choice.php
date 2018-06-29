@@ -7,14 +7,13 @@
     //connecting to the database
   $db = new mysqli('localhost', $user, $pass, $db_name) or die("unable to connect to database test");
 
-  $result_link = $_POST['result_link'];
-  $choice_ids = unserialize($_POST ['choice_ids']);
+  $result_link = $_SESSION['result_link'];
+  $choice_ids = $_SESSION['choice_ids'];
 
-  $ranks = unserialize($_POST ['ranks']);
+  $ranks = $_SESSION['ranks'];
   $votes =$_POST['vote'];
 
   for($i=0; $i<sizeof($choice_ids); $i++){
-    // echo "id= ".$choice_ids[$i]." rank= ".$ranks[$i]."vote=  ".$votes[$i];
     $id = (int)$choice_ids[$i];
     $rank = (int)$ranks[$i];
     $vote = (int)$votes[$i];

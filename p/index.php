@@ -18,12 +18,14 @@
 
   $choices_data = Tables::get_choices_by_pole_id($db,$pole_id);
   $choices = $choices_data[0];
-  $ranks = serialize($choices_data[1]);
-  $choice_ids = serialize($choices_data[2]);
+  $ranks = $choices_data[1];
+  $choice_ids = $choices_data[2];
   //setting the session and redirecting to the view page
   $_SESSION['choices'] = $choices ;
+  $_SESSION['ranks'] = $ranks ;
   $_SESSION['question'] = $question ;
   $_SESSION['result_link'] = $result_link;
+  $_SESSION['choice_ids'] = $choice_ids ;
   header("Location: http://localhost:8080/dmaker/views/vote.php");
   exit;
   $db->close();
