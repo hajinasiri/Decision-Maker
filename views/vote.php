@@ -9,11 +9,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="../styles/vote.css" type="text/css">
   <?php include './_header.php'?>
 </head>
 <body>
   <h2><?php echo $question?></h2>
-  <div>Vote for each choice with a number between 1 and <?php echo (sizeof($choices)) ?></div>
+  <div class="instruction">Vote for each choice with a number between 1 and <?php echo (sizeof($choices)) ?></div>
   <form name="votes" method="post" action="../insert_choice.php">
     <table>
       <?php
@@ -23,7 +24,7 @@
             <span>".$choices[$i]."</span>
             </td>
             <td>
-            <span><input type='text' name='vote[]'' placeholder='Enter an option' class='vote'/>
+            <span><input type='text' name='vote[]'' placeholder='Enter the number' class='vote'/>
             </td>
             </tr>";
       }

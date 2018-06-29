@@ -1,2 +1,24 @@
 h2 {
+  padding-left:1rem;
+  margin-bottom: .2em;
+
+}
+
+.instruction {
+  padding-left:1rem;
+}
+
+table {
+  margin:2rem;
+  font-size:1.2rem;
+}
+
+td {
+  padding:.5rem;
+}
+
+.submit {
+  margin-left:2.5rem;
+  font-size:2rem;
+  color:blue;
 }
