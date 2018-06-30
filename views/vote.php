@@ -24,7 +24,7 @@
             <span>".$choices[$i]."</span>
             </td>
             <td>
-            <span><input type='text' name='vote[]'' placeholder='Enter the number' class='vote'/>
+            <span><input type='number' name='vote[]'' placeholder='Enter your vote' class='vote' min='1' max='".sizeof($choices)."'/>
             </td>
             </tr>";
       }
