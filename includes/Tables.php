@@ -5,6 +5,16 @@
     }
     // creating tables functions
 
+    function connect() {
+      //Setting parameters for connecting to the database
+      $user = 'root';
+      $pass = '';
+      $db_name = 'test';
+      //connecting to the database
+      $db = new mysqli('localhost', $user, $pass, $db_name) or die("unable to connect to database test");
+      return $db;
+    }
+
     function create_users($db) { // this is the hello() function
       $create_users = "CREATE TABLE IF NOT EXISTS users(
       id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,

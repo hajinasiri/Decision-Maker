@@ -12,13 +12,7 @@
     }
     return $url;
   }
-  //Setting parameters for connecting to the database
-  $user = 'root';
-  $pass = '';
-  $db_name = 'test';
-
-  //connecting to the database
-  $db = new mysqli('localhost', $user, $pass, $db_name) or die("unable to connect to database test");
+  $db = Tables::connect();
 
   //creating tables
   Tables::create_users($db);

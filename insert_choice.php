@@ -1,12 +1,8 @@
 <?php
   session_start();
   include './includes/Tables.php';
-  $user = 'root';
-  $pass = '';
-  $db_name = 'test';
-    //connecting to the database
-  $db = new mysqli('localhost', $user, $pass, $db_name) or die("unable to connect to database test");
 
+  $db = Tables::connect();
   $result_link = $_SESSION['result_link'];
   $choice_ids = $_SESSION['choice_ids'];
 

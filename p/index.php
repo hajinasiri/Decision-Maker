@@ -3,13 +3,7 @@
   include '../includes/Tables.php';
   include '../includes/ChromePhp.php';
 
-  $user = 'root';
-  $pass = '';
-  $db_name = 'test';
-
-  //connecting to the database
-  $db = new mysqli('localhost', $user, $pass, $db_name) or die("unable to connect to database test");
-
+  $db = Tables::connect();
   $vote_link = ($_GET['l']);
   $data = Tables::get_pole_by_vote_link($db,$vote_link);
   $question = $data['question'];

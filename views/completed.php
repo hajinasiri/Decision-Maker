@@ -24,7 +24,7 @@ if(isset($_SESSION['result_link'])){
   </div>
   <div class="description">and here is the link where you can see the result</div>
   <a href= <?php
-          echo "http://localhost:8080/dmaker/p/".$result_link;
+          echo "http://localhost:8080/dmaker/r/".$result_link;
           ?>
-  ><?php echo "http://localhost:8080/dmaker/p/".$result_link;?></a>
+  ><?php echo "http://localhost:8080/dmaker/r/".$result_link;?></a>
 </div>
