@@ -14,7 +14,7 @@
 </head>
 <body>
   <h2><?php echo $question?></h2>
-  <div class="instruction">Vote for each choice with a number between 1 and <?php echo (sizeof($choices)) ?></div>
+  <div class="instruction">Vote for each choice with a number from 1 to <?php echo (sizeof($choices)) ?></div>
   <form name="votes" method="post" action="../insert_choice.php">
     <table>
       <?php
