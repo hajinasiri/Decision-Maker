@@ -13,12 +13,16 @@
     return $url;
   }
 
- function create_vote_link ($db) {
+ function create_valid_link ($db,$link_type) {
   //to make sure the created link isn't beeing already used as a vote_link
     $check = TRUE;
     while($check) {
       $vote_link = create_url();
-      $info = Tables::get_pole_by_vote_link($db,$vote_link);
+      if($link_type === "vote_link") {
+        $info = Tables::get_pole_by_vote_link($db,$vote_link);
+      }else if($link_type === "result_link"){
+        $info = Tables::get_pole_by_result_link($db,$vote_link);
+      }
       if($info === NULL) {
         $check = FALSE;
       }
@@ -26,18 +30,6 @@
     return $vote_link;
   }
 
- function create_result_link ($db) {
-  //to make sure the created link isn't beeing already used as a result_link
-    $check = TRUE;
-    while($check) {
-      $result_link = create_url();
-      $info = Tables::get_pole_by_result_link($db,$result_link);
-      if($info === NULL) {
-        $check = FALSE;
-      }
-    }
-    return $result_link;
-  }
 
   $db = Tables::connect();
 
@@ -51,8 +43,8 @@
 
   $question = $_POST['question'];
 
-  $vote_link = create_vote_link($db);
-  $result_link = create_result_link($db);
+  $vote_link = create_valid_link($db,"vote_link");
+  $result_link = create_valid_link($db, "result_link");
   $pole_id = Tables::insert_pole($db,$user_id,$vote_link,$result_link,$question);
   $options = $_POST['option'];
 
