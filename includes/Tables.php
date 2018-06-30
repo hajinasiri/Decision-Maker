@@ -3,7 +3,6 @@
 
     function __construct() {
     }
-    // creating tables functions
 
     function connect() {
       //Setting parameters for connecting to the database
@@ -15,7 +14,8 @@
       return $db;
     }
 
-    function create_users($db) { // this is the hello() function
+    // creating tables functions
+    function create_users($db) {
       $create_users = "CREATE TABLE IF NOT EXISTS users(
       id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
       email VARCHAR(30)
@@ -113,6 +113,7 @@
 
 
     //Getting data functions
+
     function get_pole_by_vote_link($db,$vote_link) {
       $pole_query = "SELECT id, question, result_link FROM poles
         WHERE vote_link="."'".$vote_link."'";
