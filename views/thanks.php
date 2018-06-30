@@ -10,7 +10,6 @@ if(isset($_SESSION['result_link'])){
 <html>
 <head>
   <link rel="stylesheet" href="../styles/thanks.css" type="text/css">
-
   <?php include './_header.php'?>
 </head>
 <body>

@@ -6,18 +6,28 @@
   $question = $_SESSION['question'];
   ?>
 
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-<h2> Here is the result</h2>
+<head>
+  <link rel="stylesheet" href="../styles/result.css" type="text/css">
+  <?php include './_header.php'?>
+</head>
+<h3> Here is the result</h3>
 <body>
-  <div><?php echo $question?></div>
-  <div>
-    <?php
-      for($i=0; $i<sizeof($choices); $i++){
-        echo "<div>
-                <span>".$choices[$i]."</span>
-                <span>".$ranks[$i]."</span>";
-      }
-    ?>
-  </div>
+  <h2><?php echo $question?></h2>
+  <table>
+    <tr>
+      <th>Choices</th>
+      <th>Votes</th>
+    </tr>
+    <div>
+      <?php
+        for($i=0; $i<sizeof($choices); $i++){
+          echo "<tr><div><td>
+                  <span>".$choices[$i]."</span></td><td>
+                  <span>".$ranks[$i]."</span></td></tr>";
+        }
+      ?>
+    </div>
+  </table>
 </body>
